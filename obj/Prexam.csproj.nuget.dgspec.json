@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Development\\Dotnet\\ASP\\Prexam\\Prexam.csproj": {}
+    "C:\\Development\\Dotnet\\ASP\\prexam\\Prexam.csproj": {}
   },
   "projects": {
-    "C:\\Development\\Dotnet\\ASP\\Prexam\\Prexam.csproj": {
+    "C:\\Development\\Dotnet\\ASP\\prexam\\Prexam.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\Dotnet\\ASP\\Prexam\\Prexam.csproj",
+        "projectUniqueName": "C:\\Development\\Dotnet\\ASP\\prexam\\Prexam.csproj",
         "projectName": "Prexam",
-        "projectPath": "C:\\Development\\Dotnet\\ASP\\Prexam\\Prexam.csproj",
+        "projectPath": "C:\\Development\\Dotnet\\ASP\\prexam\\Prexam.csproj",
         "packagesPath": "C:\\Users\\satri\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\Dotnet\\ASP\\Prexam\\obj\\",
+        "outputPath": "C:\\Development\\Dotnet\\ASP\\prexam\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
