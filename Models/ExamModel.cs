@@ -1,8 +1,12 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Prexam.Models
 {
     public class Exam
     {
-        public int Id { get; set; }
+        [Key]
+        public Guid Id { get; set; }
+        public required string CollectionCode { get; set; }
         public string Question { get; set; } = "";
         public required string[] Options { get; set; }
         public required int Answer { get; set; }

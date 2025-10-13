@@ -4,8 +4,10 @@ namespace Prexam.Services
 {
     public interface IExamService
     {
-        List<Exam> GetAll();
-        Exam? GetById(int id);
-        void Add(Exam exam);
+        Task<IEnumerable<Exam>> GetAllAsync();
+        Task<Exam?> GetByIdAsync(int id);
+        Task AddAsync(Exam exam);
+        Task<bool> UpdateAsync(int id, Exam exam);
+        Task<bool> DeleteAsync(int id);
     }
 }

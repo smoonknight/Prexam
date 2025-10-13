@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Prexam")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ae82a43ba59b9eea5fe5d98d3853678d07accd6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+66d5fa793e25036ded7e04898a03f38d7cf38aa9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Prexam")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Prexam")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

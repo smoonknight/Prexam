@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Development\\Dotnet\\ASP\\prexam\\Prexam.csproj": {}
+    "C:\\Development\\Dotnet\\ASP\\Prexam\\Prexam.csproj": {}
   },
   "projects": {
-    "C:\\Development\\Dotnet\\ASP\\prexam\\Prexam.csproj": {
+    "C:\\Development\\Dotnet\\ASP\\Prexam\\Prexam.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\Dotnet\\ASP\\prexam\\Prexam.csproj",
+        "projectUniqueName": "C:\\Development\\Dotnet\\ASP\\Prexam\\Prexam.csproj",
         "projectName": "Prexam",
-        "projectPath": "C:\\Development\\Dotnet\\ASP\\prexam\\Prexam.csproj",
+        "projectPath": "C:\\Development\\Dotnet\\ASP\\Prexam\\Prexam.csproj",
         "packagesPath": "C:\\Users\\satri\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\Dotnet\\ASP\\prexam\\obj\\",
+        "outputPath": "C:\\Development\\Dotnet\\ASP\\Prexam\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -49,6 +49,26 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
