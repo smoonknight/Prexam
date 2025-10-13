@@ -1,35 +1,30 @@
+using Prexam.DTOs;
 using Prexam.Models;
 using Prexam.Repositories;
-using Prexam.Services;
 
 namespace Prexam.Services
 {
-    public class ExamService(IExamRepository repository) : IExamService
+    public class ExamService(IRepository<Exam> repository) : ServiceBase<IRepository<Exam>, Exam, ExamRequest>(repository), IService<Exam, ExamRequest>
     {
-        public async Task AddAsync(Exam exam) => await repository.AddAsync(exam);
-
-        public async Task<bool> DeleteAsync(int id)
+        public override Exam GetEntity(ExamRequest request) => new()
         {
-            throw new NotImplementedException();
-        }
+            CollectionCode = request.CollectionCode,
+            Question = request.Question,
+            Options = request.Options,
+            Answer = request.Answer,
+            Explanation = request.Explanation,
+            Subject = request.Subject,
+            LevelType = request.LevelType,
+        };
 
-        public async Task<IEnumerable<Exam>> GetAllAsync() => await repository.GetAllAsync();
-        public async Task<Exam?> GetByIdAsync(int id) => await repository.GetByIdAsync(id);
-
-        public async Task<bool> UpdateAsync(int id, Exam exam)
+        public override void Update(Exam selectedEntity, Exam entity)
         {
-            var selectedExam = await repository.GetByIdAsync(id);
-            if (selectedExam == null) return false;
-
-            selectedExam.Question = exam.Question;
-            selectedExam.Answer = exam.Answer;
-            selectedExam.Explanation = exam.Explanation;
-            selectedExam.Subject = exam.Subject;
-            selectedExam.LevelType = exam.LevelType;
-
-            await repository.UpdateAsync(selectedExam);
-            return true;
+            selectedEntity.Question = entity.Question;
+            selectedEntity.Options = entity.Options;
+            selectedEntity.Answer = entity.Answer;
+            selectedEntity.Explanation = entity.Explanation;
+            selectedEntity.Subject = entity.Subject;
+            selectedEntity.LevelType = entity.LevelType;
         }
-
     }
 }

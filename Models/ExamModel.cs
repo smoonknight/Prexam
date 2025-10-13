@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Prexam.Models
 {
@@ -6,7 +7,9 @@ namespace Prexam.Models
     {
         [Key]
         public Guid Id { get; set; }
-        public required string CollectionCode { get; set; }
+        // [ForeignKey("Collection")]
+        public Guid CollectionCode { get; set; }
+        public virtual Collection Collection { get; set; } = null!;
         public string Question { get; set; } = "";
         public required string[] Options { get; set; }
         public required int Answer { get; set; }

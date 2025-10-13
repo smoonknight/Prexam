@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Prexam.Data;
 
@@ -10,9 +11,11 @@ using Prexam.Data;
 namespace Prexam.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251013141749_FixForeign")]
+    partial class FixForeign
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.9");
@@ -56,9 +59,6 @@ namespace Prexam.Migrations
                     b.Property<Guid>("CollectionCode")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("CollectionCode1")
-                        .HasColumnType("TEXT");
-
                     b.Property<int?>("LevelType")
                         .HasColumnType("INTEGER");
 
@@ -75,7 +75,7 @@ namespace Prexam.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CollectionCode1");
+                    b.HasIndex("CollectionCode");
 
                     b.ToTable("Exams");
                 });
@@ -121,7 +121,7 @@ namespace Prexam.Migrations
                 {
                     b.HasOne("Prexam.Models.Collection", "Collection")
                         .WithMany()
-                        .HasForeignKey("CollectionCode1")
+                        .HasForeignKey("CollectionCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

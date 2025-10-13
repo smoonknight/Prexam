@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Prexam.Data;
+using Prexam.DTOs;
+using Prexam.Models;
 using Prexam.Repositories;
 using Prexam.Services;
 
@@ -13,8 +15,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Services
-builder.Services.AddScoped<IExamService, ExamService>();
-builder.Services.AddScoped<IExamRepository, ExamRepository>();
+builder.Services.AddScoped<IService<Exam, ExamRequest>, ExamService>();
+builder.Services.AddScoped<IService<Collection, CollectionRequest>, CollectionService>();
+builder.Services.AddScoped<IService<User, UserRequest>, UserService>();
+
+// Repositories
+builder.Services.AddScoped<IRepository<Exam>, ExamRepository>();
+builder.Services.AddScoped<IRepository<Collection>, CollectionRepository>();
+builder.Services.AddScoped<IRepository<User>, UserRepository>();
 
 var app = builder.Build();
 
