@@ -8,8 +8,8 @@ namespace Prexam.Services
         T GetEntity(R request);
         Task<IEnumerable<T>> GetAllAsync();
         Task<T?> GetByIdAsync(Guid id);
-        Task<bool> AddAsync(T exam);
-        Task<bool> UpdateAsync(Guid id, T exam);
+        Task<bool> AddAsync(T entity);
+        Task<bool> UpdateAsync(Guid id, T entity);
         Task<bool> DeleteAsync(Guid id);
     }
 }

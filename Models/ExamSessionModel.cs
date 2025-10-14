@@ -19,7 +19,7 @@ namespace Prexam.Models
         public Guid CollectionCode { get; set; }
         public virtual Collection Collection { get; set; } = null!;
 
-        public int duration;
+        public int Duration { get; set; }
         public DateTime StartTime { get; set; } = DateTime.UtcNow;
         public DateTime? EndTime { get; set; }
 

@@ -19,12 +19,14 @@ builder.Services.AddScoped<IService<Exam, ExamRequest>, ExamService>();
 builder.Services.AddScoped<IService<Collection, CollectionRequest>, CollectionService>();
 builder.Services.AddScoped<IService<User, UserRequest>, UserService>();
 builder.Services.AddScoped<IService<ExamSession, ExamSessionRequest>, ExamSessionService>();
+builder.Services.AddScoped<IExamSessionAnswerService, ExamSessionAnswerService>();
 
 // Repositories
 builder.Services.AddScoped<IRepository<Exam>, ExamRepository>();
 builder.Services.AddScoped<IRepository<Collection>, CollectionRepository>();
 builder.Services.AddScoped<IRepository<User>, UserRepository>();
 builder.Services.AddScoped<IRepository<ExamSession>, ExamSessionRepository>();
+builder.Services.AddScoped<IExamSessionAnswerRepository, ExamSessionAnswerRepository>();
 
 var app = builder.Build();
 

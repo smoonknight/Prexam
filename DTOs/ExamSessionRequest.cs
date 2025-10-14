@@ -6,6 +6,8 @@ namespace Prexam.DTOs
     public class ExamSessionRequest : Request
     {
         [Required]
+        public Guid CollectionCode { get; set; }
+        [Required]
         public string Name { get; set; } = string.Empty;
         [Required]
         public LevelType MaximumLevelType { get; set; } = LevelType.Hard;

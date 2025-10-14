@@ -18,11 +18,10 @@ namespace Prexam.Repositories
         public async Task DeleteAsync(Guid id)
         {
             var entity = await GetByIdAsync(id);
-            if (entity != null)
-            {
-                dbSet.Remove(entity);
-                await context.SaveChangesAsync();
-            }
+            if (entity == null) return;
+
+            dbSet.Remove(entity);
+            await context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<T>> GetAllAsync() => await dbSet.AsNoTracking().ToListAsync();

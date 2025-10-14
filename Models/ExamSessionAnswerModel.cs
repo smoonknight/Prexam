@@ -14,11 +14,10 @@ namespace Prexam.Models
         public virtual ExamSession ExamSession { get; set; } = null!;
 
         public string Question { get; set; } = "";
-        public required string[] Options { get; set; }
-        public required int Answer { get; set; }
+        public string[] Options { get; set; } = [];
+        public int Answer { get; set; }
         public string Explanation = "";
 
-        public int SelectedOptionIndex { get; set; }
-        public bool IsCorrect { get; set; }
+        public int SelectedOptionIndex { get; set; } = -1;
     }
 }

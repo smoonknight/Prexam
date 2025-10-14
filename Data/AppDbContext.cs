@@ -8,6 +8,8 @@ namespace Prexam.Data
         public DbSet<Exam> Exams => Set<Exam>();
         public DbSet<Collection> Collections => Set<Collection>();
         public DbSet<User> Users => Set<User>();
+        public DbSet<ExamSession> ExamSessions => Set<ExamSession>();
+        public DbSet<ExamSessionAnswer> ExamSessionAnswers => Set<ExamSessionAnswer>();
 
         public override int SaveChanges()
         {

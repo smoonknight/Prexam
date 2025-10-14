@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Prexam.Models;
 
-namespace Prexam.Services
+namespace Prexam.Utils
 {
-    public class PasswordService
+    public class PasswordHelper
     {
         private readonly PasswordHasher<User> passwordHasher = new();
 

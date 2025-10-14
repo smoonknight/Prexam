@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Prexam.DTOs;
 using Prexam.Models;
 using Prexam.Repositories;
+using Prexam.Utils;
 
 namespace Prexam.Services
 {
@@ -25,9 +26,9 @@ namespace Prexam.Services
                 Name = request.Name,
             };
 
-            PasswordService passwordService = new();
+            PasswordHelper passwordHelper = new();
 
-            user.PasswordHash = passwordService.HashPassword(user, request.Password);
+            user.PasswordHash = passwordHelper.HashPassword(user, request.Password);
             return user;
         }
 
