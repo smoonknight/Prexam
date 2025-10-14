@@ -7,5 +7,6 @@ namespace Prexam.Repositories
 {
     public class UserRepository(AppDbContext context) : RepositoryBase<User>(context), IRepository<User>
     {
+
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Prexam.Data;
 
@@ -10,9 +11,11 @@ using Prexam.Data;
 namespace Prexam.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251014011229_20251014081226")]
+    partial class _20251014081226
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.9");
@@ -21,9 +24,6 @@ namespace Prexam.Migrations
                 {
                     b.Property<Guid>("CollectionCode")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
@@ -35,9 +35,6 @@ namespace Prexam.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("UserId")
@@ -62,9 +59,6 @@ namespace Prexam.Migrations
                     b.Property<Guid>("CollectionCode")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
                     b.Property<int?>("LevelType")
                         .HasColumnType("INTEGER");
 
@@ -79,9 +73,6 @@ namespace Prexam.Migrations
                     b.Property<string>("Subject")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CollectionCode");
@@ -89,81 +80,10 @@ namespace Prexam.Migrations
                     b.ToTable("Exams");
                 });
 
-            modelBuilder.Entity("Prexam.Models.ExamSession", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("CollectionCode")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("EndTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("MaximumLevelType")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CollectionCode");
-
-                    b.ToTable("ExamSession");
-                });
-
-            modelBuilder.Entity("Prexam.Models.ExamSessionAnswer", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Answer")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<Guid>("ExamSessionId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsCorrect")
-                        .HasColumnType("INTEGER");
-
-                    b.PrimitiveCollection<string>("Options")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Question")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("SelectedOptionIndex")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExamSessionId");
-
-                    b.ToTable("ExamSessionAnswer");
-                });
-
             modelBuilder.Entity("Prexam.Models.User", b =>
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -176,9 +96,6 @@ namespace Prexam.Migrations
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("UserId");
@@ -211,38 +128,9 @@ namespace Prexam.Migrations
                     b.Navigation("Collection");
                 });
 
-            modelBuilder.Entity("Prexam.Models.ExamSession", b =>
-                {
-                    b.HasOne("Prexam.Models.Collection", "Collection")
-                        .WithMany("ExamSessions")
-                        .HasForeignKey("CollectionCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Collection");
-                });
-
-            modelBuilder.Entity("Prexam.Models.ExamSessionAnswer", b =>
-                {
-                    b.HasOne("Prexam.Models.ExamSession", "ExamSession")
-                        .WithMany("ExamSessionAnswers")
-                        .HasForeignKey("ExamSessionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ExamSession");
-                });
-
             modelBuilder.Entity("Prexam.Models.Collection", b =>
                 {
-                    b.Navigation("ExamSessions");
-
                     b.Navigation("Exams");
-                });
-
-            modelBuilder.Entity("Prexam.Models.ExamSession", b =>
-                {
-                    b.Navigation("ExamSessionAnswers");
                 });
 
             modelBuilder.Entity("Prexam.Models.User", b =>

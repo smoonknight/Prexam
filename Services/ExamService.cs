@@ -4,8 +4,15 @@ using Prexam.Repositories;
 
 namespace Prexam.Services
 {
-    public class ExamService(IRepository<Exam> repository) : ServiceBase<IRepository<Exam>, Exam, ExamRequest>(repository), IService<Exam, ExamRequest>
+    public class ExamService(IRepository<Exam> examRepository, IRepository<Collection> collectionRepository) : ServiceBase<IRepository<Exam>, Exam, ExamRequest>(examRepository), IService<Exam, ExamRequest>
     {
+        public async override Task<bool> AddAsync(Exam entity)
+        {
+            var collection = await collectionRepository.GetByIdAsync(entity.CollectionCode);
+            if (collection == null) return false;
+
+            return await base.AddAsync(entity);
+        }
         public override Exam GetEntity(ExamRequest request) => new()
         {
             CollectionCode = request.CollectionCode,

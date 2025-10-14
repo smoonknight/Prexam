@@ -5,6 +5,8 @@ namespace Prexam.Services
 {
     public abstract class ServiceBase<T, E, D>(T repository) where T : IRepository<E> where E : class where D : Request
     {
+        protected readonly T repository = repository;
+
         public async virtual Task<bool> AddAsync(E entity)
         {
             await repository.AddAsync(entity);

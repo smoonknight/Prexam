@@ -7,8 +7,8 @@ using Prexam.Services;
 namespace Prexam.Controllers.Api
 {
     [ApiController]
-    [Route("api/user")]
-    public class UserApiController(IService<User, UserRequest> service) : ControllerBase
+    [Route("api/[controller]")]
+    public class UserController(IService<User, UserRequest> service) : ControllerBase
     {
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -34,14 +34,8 @@ namespace Prexam.Controllers.Api
             var user = service.GetEntity(request);
             bool success = await service.AddAsync(user);
 
-            UserResponse userResponse = new()
-            {
-                Email = user.Email,
-                Name = user.Name,
-            };
-
-            if (!success) return Conflict(new ApiResponse<UserResponse>(HttpStatusCode.Conflict, "This email is already registered. Please use a different email."));
-            return Created("", new ApiResponse<UserResponse>(HttpStatusCode.Created, "Success", userResponse));
+            if (!success) return Conflict(new ApiResponse<User>(HttpStatusCode.Conflict, "This email is already registered. Please use a different email."));
+            return Created("", new ApiResponse<User>(HttpStatusCode.Created, "Success", user));
         }
 
         [HttpPut("{id}")]
@@ -50,14 +44,8 @@ namespace Prexam.Controllers.Api
             var user = service.GetEntity(request);
             var success = await service.UpdateAsync(id, user);
 
-            UserResponse userResponse = new()
-            {
-                Email = user.Email,
-                Name = user.Name,
-            };
-
-            if (!success) return NotFound(new ApiResponse<UserResponse>(HttpStatusCode.NotFound, "Exam not found"));
-            return Ok(new ApiResponse<UserResponse>(HttpStatusCode.OK, "Success update data", userResponse));
+            if (!success) return NotFound(new ApiResponse<UserRequest>(HttpStatusCode.NotFound, "Exam not found"));
+            return Ok(new ApiResponse<UserRequest>(HttpStatusCode.OK, "Success update data", request));
         }
 
         [HttpDelete("{id}")]

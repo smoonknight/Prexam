@@ -6,9 +6,9 @@ using System.Net;
 
 namespace Prexam.Controllers.Api
 {
-    [Route("api/exam")]
     [ApiController]
-    public class ExamApiController(IService<Exam, ExamRequest> service) : ControllerBase
+    [Route("api/[controller]")]
+    public class ExamController(IService<Exam, ExamRequest> service) : ControllerBase
     {
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -32,7 +32,8 @@ namespace Prexam.Controllers.Api
         public async Task<IActionResult> Create([FromBody] ExamRequest request)
         {
             Exam exam = service.GetEntity(request);
-            await service.AddAsync(exam);
+            var success = await service.AddAsync(exam);
+            if (!success) return NotFound(new ApiResponse<Exam>(HttpStatusCode.NotFound, "Collection not found"));
             return Created("", new ApiResponse<Exam>(HttpStatusCode.Created, "Success", exam));
         }
 
