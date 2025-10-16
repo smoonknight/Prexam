@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Prexam.Models
 {
@@ -9,15 +10,15 @@ namespace Prexam.Models
         [Key]
         public Guid Id { get; set; }
 
-        [ForeignKey("ExamSession")]
-        public Guid ExamSessionId { get; set; }
-        public virtual ExamSession ExamSession { get; set; } = null!;
-
         public string Question { get; set; } = "";
         public string[] Options { get; set; } = [];
         public int Answer { get; set; }
         public string Explanation = "";
-
         public int SelectedOptionIndex { get; set; } = -1;
+
+        [ForeignKey("ExamSession")]
+        public Guid ExamSessionId { get; set; }
+        [JsonIgnore]
+        public virtual ExamSession ExamSession { get; set; } = null!;
     }
 }

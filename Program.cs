@@ -7,6 +7,9 @@ using Prexam.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var key = builder.Configuration["Jwt:Key"];
+var issuer = builder.Configuration["Jwt:Issuer"];
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
@@ -27,6 +30,18 @@ builder.Services.AddScoped<IRepository<Collection>, CollectionRepository>();
 builder.Services.AddScoped<IRepository<User>, UserRepository>();
 builder.Services.AddScoped<IRepository<ExamSession>, ExamSessionRepository>();
 builder.Services.AddScoped<IExamSessionAnswerRepository, ExamSessionAnswerRepository>();
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddHttpClient("PrexamApi", (serviceProvider, client) =>
+{
+    var context = serviceProvider.GetRequiredService<IHttpContextAccessor>().HttpContext;
+    if (context != null)
+    {
+        var request = context.Request;
+        client.BaseAddress = new Uri($"{request.Scheme}://{request.Host}");
+    }
+});
 
 var app = builder.Build();
 

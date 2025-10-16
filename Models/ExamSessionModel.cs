@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Prexam.Models
 {
@@ -20,6 +21,8 @@ namespace Prexam.Models
         public virtual Collection Collection { get; set; } = null!;
 
         public int Duration { get; set; }
+        public int TotalExam { get; set; }
+
         public DateTime StartTime { get; set; } = DateTime.UtcNow;
         public DateTime? EndTime { get; set; }
 

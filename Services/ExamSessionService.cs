@@ -12,14 +12,24 @@ namespace Prexam.Services
             if (collection == null) return false;
             entity.Duration = collection.Duration;
 
-            entity.ExamSessionAnswers = [.. collection.Exams.Select(q => new ExamSessionAnswer
+            var random = new Random();
+
+            entity.ExamSessionAnswers = [.. collection.Exams.Where(exam => !exam.LevelType.HasValue || exam.LevelType <= entity.MaximumLevelType).OrderBy(x => random.Next()).Select(exam =>
             {
-                Question = q.Question,
-                Options = q.Options,
-                Answer = q.Answer,
-                Explanation = q.Explanation,
-                SelectedOptionIndex = -1,
+                var shuffledOptions = exam.Options.OrderBy(x => random.Next()).ToList();
+                var correctIndex = shuffledOptions.IndexOf(exam.Options[exam.Answer]);
+                return new ExamSessionAnswer
+                {
+                    Question = exam.Question,
+                    Options = [.. shuffledOptions],
+                    Answer = correctIndex,
+                    Explanation = exam.Explanation,
+                    SelectedOptionIndex = -1,
+                    ExamSession = entity,
+                };
             })];
+
+            entity.TotalExam = entity.ExamSessionAnswers.Count;
 
             return await base.AddAsync(entity);
         }

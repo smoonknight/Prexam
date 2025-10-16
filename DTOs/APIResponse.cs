@@ -2,14 +2,23 @@ using System.Net;
 
 namespace Prexam.DTOs
 {
-    public class ApiResponse<T>(int code, string message, T? data = default)
+    public class ApiResponse<T>
     {
-        public int Code { get; set; } = code;
-        public string Message { get; set; } = message;
-        public T? Data { get; set; } = data;
+        public int Code { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public T? Data { get; set; }
 
-        public ApiResponse(HttpStatusCode code, string message, T? data = default) : this((int)code, message, data)
+        public ApiResponse() { }
+
+        public ApiResponse(int code, string message, T? data = default)
         {
+            Code = code;
+            Message = message;
+            Data = data;
         }
+
+        public ApiResponse(HttpStatusCode code, string message, T? data = default)
+            : this((int)code, message, data) { }
     }
+
 }

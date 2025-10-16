@@ -28,6 +28,18 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Development/Dotnet/ASP/Prexam/Views/Exam/dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhhbVxkYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Development/Dotnet/ASP/Prexam/Views/Exam/Exam.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhhbVxFeGFtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Development/Dotnet/ASP/Prexam/Views/Exam/start.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhhbVxzdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Development/Dotnet/ASP/Prexam/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

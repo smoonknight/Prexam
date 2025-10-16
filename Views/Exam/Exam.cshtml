@@ -1,0 +1,11 @@
+@{
+    ViewData["Title"] = "Result";
+    var score = ViewBag.Score;
+    var total = ViewBag.Total;
+}
+
+<div class="text-center">
+    <h2 class="fw-bold mb-3">Exam Completed</h2>
+    <p class="lead mb-4">Your Score: <span style="color:#00e0ff; font-weight:bold;">@score / @total</span></p>
+    <a asp-controller="Exam" asp-action="Dashboard" class="btn btn-outline-primary px-4 py-2">Back to Dashboard</a>
+</div>

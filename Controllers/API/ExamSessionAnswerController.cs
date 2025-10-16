@@ -16,7 +16,7 @@ namespace Prexam.Controllers.Api
             var examSessionAnswers = await service.GetAllAsync();
             return Ok(new ApiResponse<IEnumerable<ExamSessionAnswer>>(HttpStatusCode.OK, "Success", examSessionAnswers));
         }
-        [HttpPost("{id}")]
+        [HttpPost("{id}/submit")]
         public async Task<IActionResult> Submit(Guid id, [FromBody] int selectedOptionIndex)
         {
             ExamSessionAnswer examSessionAnswer = new()

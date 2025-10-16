@@ -9,7 +9,7 @@ namespace Prexam.Repositories
     {
         public override async Task<Collection?> GetByIdAsync(Guid id)
         {
-            return await dbSet.Include(c => c.User).FirstOrDefaultAsync(c => c.CollectionCode == id);
+            return await dbSet.Include(c => c.User).Include(c => c.Exams).FirstOrDefaultAsync(c => c.CollectionCode == id);
         }
     }
 }
