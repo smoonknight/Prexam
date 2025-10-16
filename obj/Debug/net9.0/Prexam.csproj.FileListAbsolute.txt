@@ -225,3 +225,5 @@ C:\Development\Dotnet\ASP\Prexam\bin\Debug\net9.0\runtimes\win-x86\native\e_sqli
 C:\Development\Dotnet\ASP\Prexam\obj\Debug\net9.0\Prexam.csproj.AssemblyReference.cache
 C:\Development\Dotnet\ASP\Prexam\obj\Debug\net9.0\Prexam.MvcApplicationPartsAssemblyInfo.cs
 C:\Development\Dotnet\ASP\Prexam\obj\Debug\net9.0\Prexam.csproj.Up2Date
+C:\Development\Dotnet\ASP\Prexam\bin\Debug\net9.0\Npgsql.dll
+C:\Development\Dotnet\ASP\Prexam\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
