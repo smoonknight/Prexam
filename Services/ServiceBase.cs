@@ -36,6 +36,7 @@ namespace Prexam.Services
             return true;
         }
 
+        public abstract D GetRequest(E entity);
         public abstract E GetEntity(D request);
         public abstract void Update(E selectedEntity, E entity);
     }

@@ -23,7 +23,7 @@ namespace Prexam.Controllers.Api
             var exam = await service.GetByIdAsync(id);
             if (exam == null)
             {
-                return NotFound(new ApiResponse<Exam>(HttpStatusCode.NotFound, "Exam not found"));
+                return NotFound(new ApiResponse<Question>(HttpStatusCode.NotFound, "Exam not found"));
             }
             return Ok(new ApiResponse<User>(HttpStatusCode.OK, "Success create data", exam));
         }
@@ -52,8 +52,8 @@ namespace Prexam.Controllers.Api
         public async Task<IActionResult> Delete(Guid id)
         {
             var success = await service.DeleteAsync(id);
-            if (!success) return NotFound(new ApiResponse<Exam>(HttpStatusCode.NotFound, "Exam not found"));
-            return Ok(new ApiResponse<Exam>(HttpStatusCode.OK, "Success delete data"));
+            if (!success) return NotFound(new ApiResponse<Question>(HttpStatusCode.NotFound, "Exam not found"));
+            return Ok(new ApiResponse<Question>(HttpStatusCode.OK, "Success delete data"));
         }
     }
 }

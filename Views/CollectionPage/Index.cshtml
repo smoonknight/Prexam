@@ -1,0 +1,29 @@
+@model List<Prexam.Models.Collection>
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2 class="text-center mb-4 fw-bold text-white">Choose Your Exam Collection</h2>
+<div class="row">
+    @foreach (var exam in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 text-center p-3 bg-dark border border-secondary rounded-4 shadow-lg">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title fw-bold text-white">@exam.Title</h5>
+                        <p class="text-secondary mb-2">@exam.Duration minutes</p>
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                        <a asp-controller="Exam" asp-action="Start" asp-route-id="@exam.CollectionCode" class="btn btn-outline-primary w-50 me-2">
+                            Start
+                        </a>
+                        <a asp-controller="CollectionPage" asp-action="Edit" asp-route-id="@exam.CollectionCode" class="btn btn-outline-warning w-50 ms-2">
+                            Edit
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -14,13 +14,13 @@ namespace Prexam.Services
 
             var random = new Random();
 
-            entity.ExamSessionAnswers = [.. collection.Exams.Where(exam => !exam.LevelType.HasValue || exam.LevelType <= entity.MaximumLevelType).OrderBy(x => random.Next()).Select(exam =>
+            entity.ExamSessionAnswers = [.. collection.Questions.Where(exam => !exam.LevelType.HasValue || exam.LevelType <= entity.MaximumLevelType).OrderBy(x => random.Next()).Select(exam =>
             {
                 var shuffledOptions = exam.Options.OrderBy(x => random.Next()).ToList();
                 var correctIndex = shuffledOptions.IndexOf(exam.Options[exam.Answer]);
                 return new ExamSessionAnswer
                 {
-                    Question = exam.Question,
+                    Question = exam.Description,
                     Options = [.. shuffledOptions],
                     Answer = correctIndex,
                     Explanation = exam.Explanation,
@@ -38,6 +38,13 @@ namespace Prexam.Services
             CollectionCode = request.CollectionCode,
             Name = request.Name,
             MaximumLevelType = request.MaximumLevelType,
+        };
+
+        public override ExamSessionRequest GetRequest(ExamSession entity) => new()
+        {
+            CollectionCode = entity.CollectionCode,
+            Name = entity.Name,
+            MaximumLevelType = entity.MaximumLevelType,
         };
 
         public override void Update(ExamSession selectedEntity, ExamSession entity)

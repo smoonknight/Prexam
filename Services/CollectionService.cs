@@ -24,6 +24,14 @@ namespace Prexam.Services
             Duration = request.Duration,
         };
 
+        public override CollectionRequest GetRequest(Collection entity) => new()
+        {
+            UserId = entity.UserId,
+            Title = entity.Title,
+            Description = entity.Description,
+            Duration = entity.Duration,
+        };
+
         public override void Update(Collection selectedEntity, Collection entity)
         {
             selectedEntity.Title = entity.Title;

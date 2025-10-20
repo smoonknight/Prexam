@@ -227,3 +227,11 @@ C:\Development\Dotnet\ASP\Prexam\obj\Debug\net9.0\Prexam.MvcApplicationPartsAsse
 C:\Development\Dotnet\ASP\Prexam\obj\Debug\net9.0\Prexam.csproj.Up2Date
 C:\Development\Dotnet\ASP\Prexam\bin\Debug\net9.0\Npgsql.dll
 C:\Development\Dotnet\ASP\Prexam\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Development\Dotnet\ASP\Prexam\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Development\Dotnet\ASP\Prexam\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Development\Dotnet\ASP\Prexam\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Development\Dotnet\ASP\Prexam\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\Development\Dotnet\ASP\Prexam\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+C:\Development\Dotnet\ASP\Prexam\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Development\Dotnet\ASP\Prexam\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\Development\Dotnet\ASP\Prexam\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll

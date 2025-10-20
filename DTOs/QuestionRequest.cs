@@ -4,11 +4,11 @@ using Prexam.Models;
 
 namespace Prexam.DTOs
 {
-    public class ExamRequest : Request
+    public class QuestionRequest : Request
     {
         public Guid CollectionCode { get; set; }
         [Required]
-        public string Question { get; set; } = "";
+        public string Description { get; set; } = "";
         [Required]
         public string[] Options { get; set; } = [];
         [Required]

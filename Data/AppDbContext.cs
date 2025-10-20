@@ -5,7 +5,7 @@ namespace Prexam.Data
 {
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public DbSet<Exam> Exams => Set<Exam>();
+        public DbSet<Question> Exams => Set<Question>();
         public DbSet<Collection> Collections => Set<Collection>();
         public DbSet<User> Users => Set<User>();
         public DbSet<ExamSession> ExamSessions => Set<ExamSession>();

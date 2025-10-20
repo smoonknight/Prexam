@@ -6,6 +6,7 @@ namespace Prexam.Services
     public interface IService<T, R> where T : class where R : Request
     {
         T GetEntity(R request);
+        R GetRequest(T entity);
         Task<IEnumerable<T>> GetAllAsync();
         Task<T?> GetByIdAsync(Guid id);
         Task<bool> AddAsync(T entity);

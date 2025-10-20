@@ -32,6 +32,11 @@ namespace Prexam.Services
             return user;
         }
 
+        public override UserRequest GetRequest(User entity) => new()
+        {
+            Name = entity.Name
+        };
+
         public override void Update(User selectedEntity, User entity)
         {
             selectedEntity.Name = entity.Name;

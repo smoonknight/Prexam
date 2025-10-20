@@ -17,8 +17,7 @@ namespace Prexam.Models
         public virtual User User { get; set; } = null!;
 
         [JsonIgnore]
-        public ICollection<Exam> Exams { get; set; } = [];
-        [JsonIgnore]
+        public ICollection<Question> Questions { get; set; } = [];
         public ICollection<ExamSession> ExamSessions { get; set; } = [];
     }
 }
