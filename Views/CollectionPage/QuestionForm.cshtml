@@ -1,0 +1,161 @@
+@model Prexam.DTOs.QuestionRequest
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = ViewData["FormAction"]?.ToString() == "Edit" ? "Edit Question" : "Create Question";
+}
+
+<h2 class="text-center mb-4 fw-bold text-white">@ViewData["Title"]</h2>
+
+<div class="card bg-dark border border-secondary shadow-lg p-4 rounded-4">
+   <form asp-action="@ViewData["FormAction"]"
+      asp-route-collectionCode="@Model.CollectionCode"
+      asp-route-questionId="@ViewBag.QuestionId"
+      method="post">
+
+        <input type="hidden" asp-for="CollectionCode" />
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label text-white fw-semibold">Description</label>
+            <textarea asp-for="Description" class="form-control bg-dark text-white border-secondary"
+                rows="3"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-white fw-semibold">Options</label>
+            <div id="options-container">
+                @if (Model.Options != null && Model.Options.Length > 0)
+                {
+                    for (int i = 0; i < Model.Options.Length; i++)
+                    {
+                        var label = (char)('A' + i);
+                        <div class="input-group mb-2 option-item">
+                            <span class="input-group-text bg-secondary text-white">@label</span>
+                            <input name="Options[@i]" value="@Model.Options[i]"
+                                class="form-control bg-dark text-white border-secondary" placeholder="Option @label" />
+                            <button type="button" class="btn btn-outline-danger remove-option-btn">✕</button>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="input-group mb-2 option-item">
+                        <span class="input-group-text bg-secondary text-white">A</span>
+                        <input name="Options[0]" class="form-control bg-dark text-white border-secondary"
+                            placeholder="Option A" />
+                        <button type="button" class="btn btn-outline-danger remove-option-btn">✕</button>
+                    </div>
+                }
+            </div>
+            <button type="button" id="add-option-btn" class="btn btn-outline-success btn-sm mt-2">+ Add Option</button>
+            <span asp-validation-for="Options" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Answer" class="form-label text-white fw-semibold">Correct Answer</label>
+            <select asp-for="Answer" id="answer-select" class="form-select bg-dark text-white border-secondary">
+                @if (Model.Options != null && Model.Options.Length > 0)
+                {
+                    for (int i = 0; i < Model.Options.Length; i++)
+                    {
+                        var label = (char)('A' + i);
+                        <option value="@i" selected="@(Model.Answer == i)">@($"Option {label}")</option>
+                    }
+                }
+                else
+                {
+                    <option value="0">Option A</option>
+                }
+            </select>
+            <span asp-validation-for="Answer" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-white fw-semibold">Explanation (Optional)</label>
+            <textarea name="Explanation" class="form-control bg-dark text-white border-secondary"
+                rows="2">@Model.Explanation</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Subject" class="form-label text-white fw-semibold">Subject (Optional)</label>
+            <input asp-for="Subject" class="form-control bg-dark text-white border-secondary"
+                placeholder="e.g. Math, Science" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LevelType" class="form-label text-white fw-semibold">Level Type (Optional)</label>
+            <select asp-for="LevelType" class="form-select bg-dark text-white border-secondary">
+                <option value="">-- Select Level --</option>
+                @foreach (var level in Enum.GetValues(typeof(Prexam.Models.LevelType)))
+                {
+                    <option value="@level" selected="@(Model.LevelType == (Prexam.Models.LevelType)level)">@level</option>
+                }
+            </select>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary w-50 me-2">Save</button>
+            <a asp-controller="CollectionPage" asp-action="Edit" asp-route-id="@Model.CollectionCode"
+                class="btn btn-secondary w-50 ms-2">Cancel</a>
+        </div>
+
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("Question form script loaded");
+
+            const optionsContainer = document.getElementById("options-container");
+            const addOptionBtn = document.getElementById("add-option-btn");
+            const answerSelect = document.getElementById("answer-select");
+
+            if (!optionsContainer || !addOptionBtn || !answerSelect) {
+                console.warn("Required elements not found.");
+                return;
+            }
+
+            function updateOptionLabels() {
+                const optionItems = optionsContainer.querySelectorAll(".option-item");
+                answerSelect.innerHTML = "";
+
+                optionItems.forEach((item, index) => {
+                    const label = item.querySelector(".input-group-text");
+                    const input = item.querySelector("input");
+                    const labelChar = String.fromCharCode(65 + index);
+                    label.textContent = labelChar;
+                    input.name = `Options[${index}]`;
+                    input.placeholder = `Option ${labelChar}`;
+
+                    const opt = document.createElement("option");
+                    opt.value = index;
+                    opt.textContent = `Option ${labelChar}`;
+                    answerSelect.appendChild(opt);
+                });
+            }
+
+            addOptionBtn.addEventListener("click", () => {
+                const index = optionsContainer.querySelectorAll(".option-item").length;
+                const div = document.createElement("div");
+                div.className = "input-group mb-2 option-item";
+                div.innerHTML = `
+                            <span class="input-group-text bg-secondary text-white">${String.fromCharCode(65 + index)}</span>
+                            <input name="Options[${index}]" class="form-control bg-dark text-white border-secondary" placeholder="Option ${String.fromCharCode(65 + index)}" />
+                            <button type="button" class="btn btn-outline-danger remove-option-btn">✕</button>
+                        `;
+                optionsContainer.appendChild(div);
+                updateOptionLabels();
+            });
+
+            optionsContainer.addEventListener("click", (e) => {
+                if (e.target.classList.contains("remove-option-btn")) {
+                    e.target.closest(".option-item").remove();
+                    updateOptionLabels();
+                }
+            });
+
+            updateOptionLabels();
+        });
+    </script>
+}
